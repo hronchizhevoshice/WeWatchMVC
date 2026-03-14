@@ -101,6 +101,7 @@ fun MovieList(
         items(movies) { movie ->
             MovieItem(
                 movie = movie,
+                isSelected = movie.isSelected,
                 onCheckboxClick = { onToggleSelection(movie.id) }
             )
         }
@@ -110,6 +111,7 @@ fun MovieList(
 @Composable
 fun MovieItem(
     movie: Movie,
+    isSelected: Boolean,
     onCheckboxClick: () -> Unit
 ) {
     Card(
@@ -153,7 +155,7 @@ fun MovieItem(
             }
 
             Checkbox(
-                checked = false, // Временно, потом через Controller
+                checked = isSelected,  // ← ДОЛЖНО БЫТЬ ТАК
                 onCheckedChange = { onCheckboxClick() }
             )
         }
